@@ -1,0 +1,65 @@
+<% layout("layouts/boilerplate") %>
+<body>
+    <div class="container mt-5">
+        <h3 class="text-center mb-4">ALL CAPSULES</h3>
+
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+            <% for (let listing of allListings) { 
+                const isUnlocked = new Date(listing.unlockDate) <= new Date(); // Check if the unlock date is in the past
+            %>
+                <div class="col">
+                    <div class="card h-100 capsule-card shadow-sm border-0">
+                        <% if (isUnlocked) { %>
+                            <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+                        <% } %>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title mb-2"><%= listing.title %></h5>
+                            <p class="card-text text-muted mb-4">
+                                <small>
+    <% if (!isUnlocked) { %>
+        Capsule will unlock on <strong><%= new Date(listing.unlockDate).toLocaleString() %></strong>
+    <% } else { %>
+        <br>
+    <% } %>
+</small>
+
+                            </p>
+
+                            <% if (isUnlocked) { %>
+                                <button class="btn btn-outline-dark1 mt-auto w-100">View Capsule</button>
+                            <% } else { %>
+                                <p class="btn btn-danger mt-auto w-100 disabled">Locked</p>
+                            <% } %>
+                        </div>
+
+                        <% if (isUnlocked) { %>
+                            </a>
+                        <% } %>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <style>
+        .capsule-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 10px;
+        }
+        
+        .capsule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .capsule-card .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-outline-dark1 {
+      background-color: #853cfa;
+      color: white;
+  }
+    </style>
+</body>

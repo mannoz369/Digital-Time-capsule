@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+      
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+              <a class="nav-link btn btn-outline-dark me-2" href="/listings">Capsules</a>
+              <a class="nav-link btn btn-outline-dark me-2" href="/listings/new">Create Your Capsule</a>
+          </div>
+          <div class="navbar-nav ms-auto">
+              <% if (!currUser) { %>
+                  <a class="nav-link btn btn-outline-dark me-2" href="/signup">Sign Up</a>
+                  <a class="nav-link btn btn-outline-dark me-2" href="/login">Login</a>
+              <% } else { %>
+                  <a class="nav-link btn btn-outline-dark me-2" href="/logout">Logout</a>
+              <% } %>
+          </div>
+      </div>
+  </div>
+</nav>
+
+<style>
+  .navbar-brand i {
+      font-size: 1.5rem;
+      color: #343a40;
+  }
+
+  .btn {
+      font-weight: bold;
+      border-radius: 8px;
+      transition: all 0.2s;
+  }
+
+  .btn-outline-dark:hover {
+      background-color: #853cfa;
+      color: white;
+  }
+
+  .btn-success:hover {
+      background-color: #28a745;
+      color: white;
+  }
+
+  .btn-primary:hover {
+      background-color: #007bff;
+      color: white;
+  }
+
+  .btn-danger:hover {
+      background-color: #dc3545;
+      color: white;
+  }
+</style>
